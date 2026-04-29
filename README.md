@@ -21,3 +21,5 @@ UCI Heart Disease Dataset
 
 ## 🚀 Status
 In Progress
+
+- Day 2: Data exploration, visualization, and handling categorical features
