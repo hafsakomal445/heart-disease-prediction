@@ -24,3 +24,6 @@ In Progress
 
 - Day 2: Data exploration, visualization, and handling categorical features
 - Day 3: Data cleaning, missing value handling, encoding categorical features, and train-test split
+- Day 4: Trained Logistic Regression model and evaluated performance
+## Model Used
+- Logistic Regression

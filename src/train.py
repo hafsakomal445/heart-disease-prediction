@@ -128,6 +128,25 @@ print(classification_report(y_test, y_pred))
 print("Confusion Matrix:\n")
 print(confusion_matrix(y_test, y_pred))
 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(6,4))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+
+plt.show()
+feature_importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Coefficient': model.coef_[0]
+})
+
+print(feature_importance.sort_values(by='Coefficient', ascending=False))
 
 # ============================================
 # End
