@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-
+from sklearn.ensemble import RandomForestClassifier
 
 # ============================================
 # Load Dataset
@@ -147,7 +147,48 @@ feature_importance = pd.DataFrame({
 })
 
 print(feature_importance.sort_values(by='Coefficient', ascending=False))
+# ============================================
+# Random Forest Model
+# ============================================
 
+rf_model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+
+print("Random Forest model trained successfully!\n")
+# Make Predictions
+rf_pred = rf_model.predict(X_test)
+# Evaluate Random Forest
+rf_accuracy = accuracy_score(y_test, rf_pred)
+
+print("========== RANDOM FOREST EVALUATION ==========")
+
+print(f"Random Forest Accuracy: {rf_accuracy:.4f}\n")
+
+print("Classification Report:\n")
+print(classification_report(y_test, rf_pred))
+
+print("Confusion Matrix:\n")
+print(confusion_matrix(y_test, rf_pred))
+# Compare Models
+print("========== MODEL COMPARISON ==========")
+
+print(f"Logistic Regression Accuracy: {accuracy:.4f}")
+print(f"Random Forest Accuracy: {rf_accuracy:.4f}")
+# Visual Comparison (IMPORTANT)
+models = ['Logistic Regression', 'Random Forest']
+scores = [accuracy, rf_accuracy]
+
+plt.figure(figsize=(6,4))
+plt.bar(models, scores)
+
+plt.title("Model Accuracy Comparison")
+plt.ylabel("Accuracy")
+
+plt.show()
 # ============================================
 # End
 # ============================================

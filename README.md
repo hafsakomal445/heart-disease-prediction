@@ -27,3 +27,9 @@ In Progress
 - Day 4: Trained Logistic Regression model and evaluated performance
 ## Model Used
 - Logistic Regression
+## Models Trained
+- Logistic Regression
+- Random Forest Classifier
+
+## Results
+Random Forest achieved better performance compared to Logistic Regression.
