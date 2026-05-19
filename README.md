@@ -33,3 +33,9 @@ In Progress
 
 ## Results
 Random Forest achieved better performance compared to Logistic Regression.
+## Day 6 Insights
+
+- Hyperparameter tuning improved model performance
+- Tuned Random Forest achieved highest accuracy
+- Features like cp, thalach/thalch, and oldpeak are important predictors
+- Cross-validation helps improve model reliability

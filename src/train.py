@@ -9,7 +9,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
-
+from sklearn.model_selection import GridSearchCV
 # ============================================
 # Load Dataset
 # ============================================
@@ -163,7 +163,24 @@ print("Random Forest model trained successfully!\n")
 rf_pred = rf_model.predict(X_test)
 # Evaluate Random Forest
 rf_accuracy = accuracy_score(y_test, rf_pred)
+# ============================================
+# Hyperparameter Tuning
+# ============================================
 
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 5, 10],
+    'min_samples_split': [2, 5, 10]
+}
+grid_search = GridSearchCV(
+    estimator=RandomForestClassifier(random_state=42),
+    param_grid=param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+
+grid_search.fit(X_train, y_train)
 print("========== RANDOM FOREST EVALUATION ==========")
 
 print(f"Random Forest Accuracy: {rf_accuracy:.4f}\n")
@@ -187,6 +204,64 @@ plt.bar(models, scores)
 
 plt.title("Model Accuracy Comparison")
 plt.ylabel("Accuracy")
+
+plt.show()
+print("Best Parameters:")
+print(grid_search.best_params_)
+
+print("\nBest Cross Validation Score:")
+print(grid_search.best_score_)
+best_rf = grid_search.best_estimator_
+
+best_rf_pred = best_rf.predict(X_test)
+
+best_rf_accuracy = accuracy_score(y_test, best_rf_pred)
+
+print(f"\nTuned Random Forest Accuracy: {best_rf_accuracy:.4f}")
+print("\n========== FINAL MODEL COMPARISON ==========")
+
+print(f"Logistic Regression Accuracy: {accuracy:.4f}")
+print(f"Random Forest Accuracy: {rf_accuracy:.4f}")
+print(f"Tuned Random Forest Accuracy: {best_rf_accuracy:.4f}")
+models = [
+    'Logistic Regression',
+    'Random Forest',
+    'Tuned Random Forest'
+]
+
+scores = [
+    accuracy,
+    rf_accuracy,
+    best_rf_accuracy
+]
+
+plt.figure(figsize=(8,5))
+plt.bar(models, scores)
+
+plt.title("Model Accuracy Comparison")
+plt.ylabel("Accuracy")
+
+plt.show()
+feature_importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': best_rf.feature_importances_
+})
+
+feature_importance = feature_importance.sort_values(
+    by='Importance',
+    ascending=False
+)
+
+print(feature_importance)
+plt.figure(figsize=(10,6))
+
+sns.barplot(
+    x='Importance',
+    y='Feature',
+    data=feature_importance
+)
+
+plt.title("Feature Importance")
 
 plt.show()
 # ============================================
