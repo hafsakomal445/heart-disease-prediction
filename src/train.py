@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+import joblib
 # ============================================
 # Load Dataset
 # ============================================
@@ -264,6 +265,13 @@ sns.barplot(
 plt.title("Feature Importance")
 
 plt.show()
+# ============================================
+# Save Model
+# ============================================
+
+joblib.dump(best_rf, "../model/heart_disease_model.pkl")
+
+print("Model saved successfully!")
 # ============================================
 # End
 # ============================================

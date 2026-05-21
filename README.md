@@ -39,3 +39,10 @@ Random Forest achieved better performance compared to Logistic Regression.
 - Tuned Random Forest achieved highest accuracy
 - Features like cp, thalach/thalch, and oldpeak are important predictors
 - Cross-validation helps improve model reliability
+
+- Day 7: Saved trained model and built prediction system
+## Features
+- Heart disease prediction
+- Model comparison
+- Hyperparameter tuning
+- Saved ML model for future predictions
