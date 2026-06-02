@@ -46,3 +46,6 @@ Random Forest achieved better performance compared to Logistic Regression.
 - Model comparison
 - Hyperparameter tuning
 - Saved ML model for future predictions
+- Day 8: Built Streamlit web application for heart disease prediction
+## Web Application
+Built with Streamlit for interactive predictions.
