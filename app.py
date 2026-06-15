@@ -1,14 +1,18 @@
 import streamlit as st
+import pandas as pd
 import joblib
 
-st.title("❤️ Heart Disease Prediction")
+st.set_page_config(page_title="Heart Disease Predictor", page_icon="❤️")
 
-try:
-    model = joblib.load("model/heart_disease_model.pkl")
+st.title("❤️ Heart Disease Prediction App")
 
-    st.success("Model loaded successfully!")
+model = joblib.load("model/heart_disease_model.pkl")
 
-    st.write(type(model))
+# Input fields
+age = st.number_input("Age", 1, 120, 50)
+sex = st.selectbox("Sex", ["Female", "Male"])
+trestbps = st.number_input("Blood Pressure", 50, 250, 120)
+chol = st.number_input("Cholesterol", 50, 700, 200)
 
-except Exception as e:
-    st.error(f"Error loading model: {e}")
+if st.button("Predict"):
+    st.success("Prediction button clicked!")
