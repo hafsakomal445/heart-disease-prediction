@@ -18,3 +18,8 @@ Machine Learning project that predicts the likelihood of heart disease using pat
 - Scikit-learn
 - Streamlit
 - Joblib
+## Live Demo
+
+Try the application online:
+
+https://your-app-name.streamlit.app
